@@ -3810,3 +3810,22 @@ class FerriteTestnet(Ferrite):
         'enode2.ferritecoin.org s t',
         'enode3.ferritecoin.org s t',
     ]
+
+
+class DebitMyData(Coin):
+    NAME = "DebitMyData"
+    SHORTNAME = "DMD"
+    NET = "mainnet"
+    XPUB_VERBYTES = bytes.fromhex("04dab21e")
+    XPRV_VERBYTES = bytes.fromhex("04daade4")
+    P2PKH_VERBYTE = bytes.fromhex("1e")
+    P2SH_VERBYTES = (bytes.fromhex("1f"),)
+    WIF_BYTE = bytes.fromhex("9e") 
+    GENESIS_HASH = ('00000992d19e3ed58ddf4117b597955752ff029e7256487a47557a24aeb4cadd')
+    DESERIALIZER = lib_tx.DeserializerSegWit
+    TX_COUNT = 231414
+    TX_COUNT_HEIGHT = 128452
+    TX_PER_BLOCK = 1.9504
+    RPC_PORT = 18557
+    REORG_LIMIT = 500
+    DAEMON = daemon.Daemon
