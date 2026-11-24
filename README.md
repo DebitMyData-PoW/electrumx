@@ -1,31 +1,30 @@
-# ElectrumX - python electrum server
+# ElectrumX for DebitMyData
 
-```
-Licence: MIT
-Original Author: Neil Booth
-Current Maintainers: The Electrum developers
-Language: Python (>= 3.10)
-```
+The server side of the DebitMyData Electrum wallet. It indexes the DebitMyData (DMD) chain from a
+full node, so that lightweight wallets can find their addresses' history and balances in an
+instant, without downloading the chain. The servers the
+[DebitMyData Electrum wallet](https://github.com/DebitMyData-PoW/electrum) connects to run it.
 
-[![Latest PyPI package](https://badge.fury.io/py/e_x.svg)](https://pypi.org/project/e-x/)
-[![Build Status](https://github.com/spesmilo/electrumx/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/spesmilo/electrumx/actions/workflows/ci.yml)
+It is a fork of [ElectrumX](https://github.com/spesmilo/electrumx), the Electrum server most of
+the public Electrum network runs, kept up to date with it, with the DebitMyData chain added
+(`DebitMyData` in [`src/electrumx/lib/coins.py`](src/electrumx/lib/coins.py): its addresses,
+extended keys, genesis block and node port).
 
-This project is a fork of [kyuupichan/electrumx](https://github.com/kyuupichan/electrumx).
-The original author dropped support for Bitcoin, which we intend to keep.
+## What it does
 
-ElectrumX allows users to run their own Electrum server. It connects to your
-full node and indexes the blockchain, allowing efficient querying of the history of
-arbitrary addresses. The server can be exposed publicly, and joined to the public network
-of servers via peer discovery. As of May 2020, a significant chunk of the public
-Electrum server network runs ElectrumX.
+- **Indexes every address** of the chain, from a DebitMyData Core node, into its own database.
+- **Answers wallets** over TCP, SSL and WebSocket, with the Electrum protocol: balances, history,
+  headers, fee estimates, and broadcasting their transactions.
+- **Joins other servers** through peer discovery, if its operator chooses.
+- Holds **no keys and no coins**: wallets sign their transactions themselves.
 
-### Documentation
+## Installation
 
-See [readthedocs](https://electrumx-spesmilo.readthedocs.io).
+Running a DebitMyData Electrum server, from the node to the wallets connecting to it: see
+**[INSTALL.md](INSTALL.md)**. ElectrumX's own documentation, with every setting, is in
+[docs/](docs/) and on [readthedocs](https://electrumx-spesmilo.readthedocs.io).
 
-### Releases
+## License
 
-Running from the latest git tag is always a safe bet, for which there are also releases on PyPI:
-```
-$ pip install e-x
-```
+MIT ([LICENCE](LICENCE)). ElectrumX was written by Neil Booth and is maintained by the Electrum
+developers.
